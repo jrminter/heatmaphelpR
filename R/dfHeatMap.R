@@ -6,18 +6,18 @@
 #'
 #' @param dat myTitle a title for the plot
 #'
-#' @param lowLim the lower limit for the values
+#' @param lowLim the lower limit for the values (default 0)
 #'
-#' @param highLim the upperr limit for the values
+#' @param highLim the upper limit for the values (default 1)
 #'
-#' @param dat Input data frame
+#' @param pt size for text annotation (default = 4)
 #'
 #' @return zp1 The ggplot2 plot
 #'
 #' @keywords keywords
 #'
 #' @export
-dfHeatMap <- function(dat, myTitle, lowLim=0, highLim=1)
+dfHeatMap <- function(dat, myTitle, lowLim=0, highLim=1, pt=4)
 {
   library(ggplot2)
   library(reshape2)
@@ -32,7 +32,9 @@ dfHeatMap <- function(dat, myTitle, lowLim=0, highLim=1)
   zp1 <- zp1 + labs(title=myTitle)
   zp1 <- zp1 + scale_fill_gradientn(colours = myPalette(255),
                                     limits = c(lowLim, highLim))
-  zp1 <- zp1 + geom_text(aes(fill=value, label=round(value, 2)))
+  zp1 <- zp1 + geom_text(aes(fill=value,
+                             label=round(value, 2)),
+                         size=pt)
   zp1 <- zp1 + scale_x_discrete(expand = c(0, 0))
   zp1 <- zp1 + scale_y_discrete(expand = c(0, 0))
   zp1 <- zp1 + coord_equal()
