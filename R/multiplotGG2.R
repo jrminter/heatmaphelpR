@@ -21,7 +21,7 @@
 #'
 #' @export
 #'
-multiplotGG <- function(..., plotlist=NULL, cols=1, layout=NULL) {
+multiplotGG2 <- function(..., plotlist=NULL, cols=1, layout=NULL) {
   library(grid)
 
   # Make a list from the ... arguments and plotlist
