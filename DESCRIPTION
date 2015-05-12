@@ -1,6 +1,6 @@
 Package: heatmaphelpR
 Title: Provides helper functions to create heat maps from dataframes
-Version: 0.0.0.92
+Version: 0.0.0.93
 Authors@R: person("Minter", "John", , "jrminter@gmail.com", role = c("aut", "cre"))
 Description: This packaged provides functions to aid in the construction
   of heatmaps from dataframes
