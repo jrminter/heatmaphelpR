@@ -16,12 +16,14 @@
 #'
 #' @keywords keywords
 #'
+#' @import ggplot2
+#' @import reshape2
+#' @import RColorBrewer
+#'
 #' @export
+#'
 dfHeatMap <- function(dat, myTitle, lowLim=0, highLim=1, pt=4)
 {
-  library(ggplot2)
-  library(reshape2)
-  library(RColorBrewer)
   m <- as.matrix(dat)
   longData <- melt(m)
   colnames(longData) <- c("Position", "Station", "value")

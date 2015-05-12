@@ -17,6 +17,11 @@
 #'
 #' @keywords keywords
 #'
+#' @import ggplot2
+#' @import dplyr
+#' @import tidyr
+#' @import RColorBrewer
+#'
 #' @export
 dfHeatMapUV <- function(dat,
 	                    myTitle,
@@ -24,24 +29,20 @@ dfHeatMapUV <- function(dat,
                       highLim=1.5,
                       pt=3)
 {
-  library(ggplot2)
-  library(dplyr)
-  library(tidyr)
-  library(RColorBrewer)
   # Add a 'Position' column (don't just use row names...)
   Position <- c("1", "2", "3", "4", "5")
   work <- cbind(Position, dat)
   names(work) <- c("Position", "S1", "S2", "S3",
                    "S4", "S5", "S6", "S7")
-  
+
   # we have to sort the columns
   work <- sortAscendingDataFrameCols(work, start=2)
- 
+
   # we need to 'tidy' the data to get it into long form
   # tidyr supports the pipe (%>%) operator
-  tidyDat <- work %>% 
+  tidyDat <- work %>%
     gather(Station, Density, S1:S7)
-  
+
   # create a color pallette
   myPalette <- colorRampPalette(rev(brewer.pal(11, "Spectral")),
                                 space="Lab")
@@ -65,7 +66,7 @@ dfHeatMapUV <- function(dat,
   # ret <- ret + theme(plot.title = element_text(size = rel(1.25)))
   # ret <- ret + theme(axis.title = element_text(size = rel(1.15)))
   # ret <- ret + theme(axis.text = element_text(size = rel(1.10)))
-  
+
   # we're out of here...
   return(ret)
 }
